@@ -1,5 +1,5 @@
 /*
- * Copyright 2005 Joe Walker
+ * Copyright 2017 William Huera
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,12 +25,8 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//import org.directwebremoting.datasync.StoreProvider;
-
 import com.app.modelo.Contacto;
 import com.app.service.impl.ServiceContact;
-
-//import org.directwebremoting.datasync.StoreProvider;
 
 import ec.com.app.model.Person;
 
@@ -57,8 +53,9 @@ public class People
      *
      * @param index the index
      * @return the all persons
+     * @throws InterruptedException 
      */
-    public List<Person> getAllPersons(String index){    	
+    public List<Person> getAllPersons(String index, int sleepvalue) throws InterruptedException{    	
     	List<Contacto> listContacto = new ArrayList<Contacto>();
     	listContacto = serviceContact.getInformationAllPersonsForOptions(index);
     	int ini = 0;
@@ -66,6 +63,7 @@ public class People
     	for (Contacto contacto : listContacto) {
     		 ini++;
 			Person person = new Person(String.valueOf(ini), contacto.getPrimer_nombre(), "centro norte", 20, true);
+			Thread.sleep(sleepvalue);
 			listPerson.add(person);
 		}
     	logger.info("listperson: "+listPerson.toString());
