@@ -55,7 +55,7 @@ public class People
      * @return the all persons
      * @throws InterruptedException 
      */
-    public List<Person> getAllPersons(String index, int sleepvalue) throws InterruptedException{    	
+    public synchronized List<Person> getAllPersons(String index, int sleepvalue) throws InterruptedException{    	
     	List<Contacto> listContacto = new ArrayList<Contacto>();
     	listContacto = serviceContact.getInformationAllPersonsForOptions(index);
     	int ini = 0;
