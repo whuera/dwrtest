@@ -1,8 +1,18 @@
 package ec.com.app.model;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Demo.
+ */
 public class Demo {
 	
-	 public String sayHello(String name) {
+	 /**
+ 	 * Say hello.
+ 	 *
+ 	 * @param name the name
+ 	 * @return the string
+ 	 */
+ 	public String sayHello(String name) {
 	        return "hola 2, " + name;
 	    }
 	/* 

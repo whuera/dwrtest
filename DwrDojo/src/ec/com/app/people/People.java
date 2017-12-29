@@ -37,6 +37,7 @@ import ec.com.app.model.Person;
 
 
 
+// TODO: Auto-generated Javadoc
 /**
  * A container for 2 sets of people.
  * The smaller is designed for viewing all at the same time, and is viewable
@@ -48,21 +49,28 @@ import ec.com.app.model.Person;
  */
 public class People
 {
-    /**
-     * Pre-populate the small and large crowds
-     */
+    
+    /** Pre-populate the small and large crowds. */
 	ServiceContact serviceContact = new ServiceContact();
 
     /**
      * We maintain 2 lists of people, small (~10 people) and large (~1000).
      * The smaller is for when we want to show them all on the screen at the
      * same time, the larger for when we don'e.
+     *
+     * @return the small crowd
      */
     public Collection<Person> getSmallCrowd()
     {
         return smallCrowd.values();
     }
     
+    /**
+     * Gets the all persons.
+     *
+     * @param index the index
+     * @return the all persons
+     */
     public List<Person> getAllPersons(String index){
     	List<Person> listPerson = new ArrayList<Person>();
     	List<Contacto> listContacto = new ArrayList<Contacto>();
@@ -76,6 +84,11 @@ public class People
     	return listPerson;
     }
     
+    /**
+     * Gets the persons.
+     *
+     * @return the persons
+     */
     public List<Person> getPersons(){
     	List<Person> listPerson = new ArrayList<Person>();
     	Person person = new Person("1","Carlos", "norte", 20, true);
@@ -87,8 +100,10 @@ public class People
     }
 
     /**
-     * Insert a person into the set of people
+     * Insert a person into the set of people.
+     *
      * @param person The person to add or update
+     * @return the string
      */
     public String setPerson(Person person)
     {
@@ -98,8 +113,10 @@ public class People
     }
 
     /**
-     * Delete a person from the set of people
+     * Delete a person from the set of people.
+     *
      * @param id The id of the person to delete
+     * @return the string
      */
     public String deletePerson(String id)
     {
@@ -115,7 +132,9 @@ public class People
     }
 
     /**
-     * Accessor for a subset of the current list of people
+     * Accessor for a subset of the current list of people.
+     *
+     * @param filter the filter
      * @return the current list of people
      */
     public List<Person> getMatchingFromLargeCrowd(String filter)
@@ -133,17 +152,24 @@ public class People
     }
 
     /**
+     * The small crowd.
+     *
      * @see #getSmallCrowd()
      */
     private final Map<String, Person> smallCrowd = null;
 
     /**
+     * The large crowd.
+     *
      * @see #getMatchingFromLargeCrowd(String)
      */
     private final Map<String, Person> largeCrowd = null;
 
     /**
      * Both crowds are created in the same way.
+     *
+     * @param count the count
+     * @return the map
      */
     private static Map<String, Person> createCrowd(int count)
     {
