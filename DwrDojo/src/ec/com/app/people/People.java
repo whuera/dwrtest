@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 //import org.directwebremoting.datasync.StoreProvider;
 
 import com.app.modelo.Contacto;
@@ -31,25 +34,9 @@ import com.app.service.impl.ServiceContact;
 
 import ec.com.app.model.Person;
 
-
-
-
-
-
-
-// TODO: Auto-generated Javadoc
-/**
- * A container for 2 sets of people.
- * The smaller is designed for viewing all at the same time, and is viewable
- * and editable via {@link #getSmallCrowd()}, {@link #setPerson(Person)} and
- * {@link #deletePerson(String)}. The larger is accessible using the
- * {@link StoreProvider} registered under 'largeCrowd', and searchable using
- * {@link #getMatchingFromLargeCrowd(String)}
- * @author Joe Walker [joe at getahead dot ltd dot uk]
- */
 public class People
 {
-    
+	private static final Logger logger = LoggerFactory.getLogger(People.class);
     /** Pre-populate the small and large crowds. */
 	ServiceContact serviceContact = new ServiceContact();
 
@@ -71,16 +58,17 @@ public class People
      * @param index the index
      * @return the all persons
      */
-    public List<Person> getAllPersons(String index){
-    	List<Person> listPerson = new ArrayList<Person>();
+    public List<Person> getAllPersons(String index){    	
     	List<Contacto> listContacto = new ArrayList<Contacto>();
     	listContacto = serviceContact.getInformationAllPersonsForOptions(index);
     	int ini = 0;
+    	List<Person> listPerson = new ArrayList<Person>();
     	for (Contacto contacto : listContacto) {
     		 ini++;
 			Person person = new Person(String.valueOf(ini), contacto.getPrimer_nombre(), "centro norte", 20, true);
 			listPerson.add(person);
 		}
+    	logger.info("listperson: "+listPerson.toString());
     	return listPerson;
     }
     
@@ -95,7 +83,7 @@ public class People
     	Person person2 = new Person("2","Pedro", "norte", 20, true);
     	listPerson.add(person);
     	listPerson.add(person2);
-    	System.out.println("persons: "+listPerson.toString());
+    	logger.info("persons: "+listPerson.toString());
     	return listPerson;
     }
 
@@ -107,7 +95,6 @@ public class People
      */
     public String setPerson(Person person)
     {
-    	System.out.println("person :"+person.toString());
         smallCrowd.put(person.getId(), person);
         return "Updated values for " + person.getName();
     }

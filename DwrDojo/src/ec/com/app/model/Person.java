@@ -1,6 +1,6 @@
 package ec.com.app.model;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Person.
  */
